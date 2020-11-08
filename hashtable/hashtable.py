@@ -51,11 +51,11 @@ class HashTable:
         count = 0
         for item in self.storage:
             if item:
-                curr_item = item
+                current = item
                 count += 1
-                while curr_item.next:
+                while current.next:
                     count += 1
-                    curr_item = curr_item.next
+                    current = current.next
 
         return count / len(self.storage)
 
@@ -107,7 +107,7 @@ class HashTable:
             while current:
                 if current.key == key:
                     current.value = value
-                    return
+                    return None
                 if current.next:
                     current = current.next
                 else:
@@ -127,19 +127,20 @@ class HashTable:
         # Your code here
         hash_index = self.hash_index(key)
         current = self.storage[hash_index]
+
         if current:
             while current:
                 if current.key == key:
                     self.storage[hash_index] = current.next
                     if self.capacity > 16:
                         self.resize(self.capacity / 2)
-                        return
+                        return None
                 elif current.next:
                     current = current.next
                 else:
-                    return
+                    return None
         else:
-            return
+            return None
 
     # Day 1 Part 4, Implement get() function
     def get(self, key):
@@ -157,9 +158,11 @@ class HashTable:
                 if current.key == key:
                     return current.value
                 current = current.next
+
             if current.key == key:
                 return current.value
-        return
+
+        return None
 
     def resize(self, new_capacity):
         """
