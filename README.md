@@ -2,23 +2,22 @@
 
 ## Day 1
 
-Task: Implement a basic hash table without collision resolution.
+- [X] Task: Implement a basic hash table without collision resolution.
 
-1. Implement a `HashTable` class and `HashTableEntry` class.
+    - [X] Implement a `HashTable` class and `HashTableEntry` class.
 
-2. Implement a good hashing function.
+    - [X] Implement a good hashing function.
 
-   Recommend either of:
+        Recommend either of:
 
-   * DJB2
-   * FNV-1 (64-bit)
+        - [X] DJB2
+        - [ ] FNV-1 (64-bit)
 
-   You are allowed to Google for these hashing functions and implement
-   from psuedocode.
+        You are allowed to Google for these hashing functions and implement from psuedocode.
 
-3. Implement the `hash_index()` that returns an index value for a key.
+    - [X] Implement the `hash_index()` that returns an index value for a key.
 
-4. Implement the `put()`, `get()`, and `delete()` methods.
+    - [X] Implement the `put()`, `get()`, and `delete()` methods.
 
 You can test this with:
 
@@ -32,11 +31,11 @@ FNV-1 (64 bit) hashing functions, there are no collisions.
 
 ## Day 2
 
-Task: Implement linked-list chaining for collision resolution.
+- [X] Task: Implement linked-list chaining for collision resolution.
 
-1. Modify `put()`, `get()`, and `delete()` methods to handle collisions.
+    - [X] Modify `put()`, `get()`, and `delete()` methods to handle collisions.
 
-2. There is no step 2.
+    - There is no step 2.
 
 You can test this with:
 
@@ -44,15 +43,13 @@ You can test this with:
 python test_hashtable.py
 ```
 
-Task: Implement load factor measurements and automatic hashtable size
-doubling.
+- [X] Task: Implement load factor measurements and automatic hashtable size doubling.
 
-1. Compute and maintain load factor.
+    - [X] Compute and maintain load factor.
 
-2. When load factor increases above `0.7`, automatically rehash the
-   table to double its previous size.
+    - [X] When load factor increases above `0.7`, automatically rehash the table to double its previous size.
 
-   Add the `resize()` method.
+    - [X] Add the `resize()` method.
 
 You can test this with both of:
 
@@ -61,7 +58,7 @@ python test_hashtable.py
 python test_hashtable_resize.py
 ```
 
-Stretch: When load factor decreases below `0.2`, automatically rehash
+- [ ] Stretch: When load factor decreases below `0.2`, automatically rehash
 the table to half its previous size, down to a minimum of 8 slots.
 
 ## Day 3 and Day 4
