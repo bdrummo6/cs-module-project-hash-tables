@@ -2,23 +2,22 @@
 
 ## Day 1
 
-Task: Implement a basic hash table without collision resolution.
+- [X] Task: Implement a basic hash table without collision resolution.
 
-- [X] Implement a `HashTable` class and `HashTableEntry` class.
+    - [X] Implement a `HashTable` class and `HashTableEntry` class.
 
-- [X] Implement a good hashing function.
+    - [X] Implement a good hashing function.
 
-   Recommend either of:
+        Recommend either of:
 
-   - [X] DJB2
-   * FNV-1 (64-bit)
+        - [X] DJB2
+        - [ ] FNV-1 (64-bit)
 
-   You are allowed to Google for these hashing functions and implement
-   from psuedocode.
+        You are allowed to Google for these hashing functions and implement from psuedocode.
 
-- [X] Implement the `hash_index()` that returns an index value for a key.
+    - [X] Implement the `hash_index()` that returns an index value for a key.
 
-- [X] Implement the `put()`, `get()`, and `delete()` methods.
+    - [X] Implement the `put()`, `get()`, and `delete()` methods.
 
 You can test this with:
 

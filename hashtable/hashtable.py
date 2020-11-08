@@ -1,4 +1,5 @@
-# Day 1 Part 1, Implemented a HashTableEntry class
+# Day 1, Task: Implement a basic hash table without collision resolution.
+# Step 1: Implemented a HashTableEntry class
 class HashTableEntry:
     """
     Linked List hash table key/value pair
@@ -13,7 +14,8 @@ class HashTableEntry:
 # Hash table can't have fewer than this many slots
 MIN_CAPACITY = 8
 
-# Day 1 Part 1, Implemented a HashTable class
+# Day 1, Task: Implement a basic hash table without collision resolution.
+# Step 1: Implemented a HashTable class
 class HashTable:
     """
     A hash table that with `capacity` buckets
@@ -48,16 +50,6 @@ class HashTable:
         Implement this.
         """
         # Your code here
-        count = 0
-        for item in self.storage:
-            if item:
-                current = item
-                count += 1
-                while current.next:
-                    count += 1
-                    current = current.next
-
-        return count / len(self.storage)
 
     def fnv1(self, key):
         """
@@ -68,7 +60,8 @@ class HashTable:
 
         # Your code here
 
-    # Day 1 Part 2, Implemented hash function
+    # Day 1, Task: Implement a basic hash table without collision resolution.
+    # Step 2: Implement a good hashing function
     def djb2(self, key):
         """
         DJB2 hash, 32-bit
@@ -82,7 +75,8 @@ class HashTable:
 
         return hash_1 & 0xFFFFFFFF
 
-    # Day 1 Part 3, Implement hash_index() function
+    # Day 1, Task: Implement a basic hash table without collision resolution.
+    # Step 3: Implement hash_index() function
     def hash_index(self, key):
         """
         Take an arbitrary key and return a valid integer index
@@ -90,7 +84,8 @@ class HashTable:
         """
         return self.djb2(key) % self.capacity
 
-    # Day 1 Part 4, Implement put() function
+    # Day 1, Task: Implement a basic hash table without collision resolution.
+    # Step 4: Implement put() function
     def put(self, key, value):
         """
         Store the value with the given key.
@@ -115,7 +110,8 @@ class HashTable:
         else:
             self.storage[hash_index] = HashTableEntry(key, value)
 
-    # Day 1 Part 4, Implement delete() function
+    # Day 1, Task: Implement a basic hash table without collision resolution.
+    # Step 4: Implement delete() function
     def delete(self, key):
         """
         Remove the value stored with the given key.
@@ -142,7 +138,8 @@ class HashTable:
         else:
             return None
 
-    # Day 1 Part 4, Implement get() function
+    # Day 1, Task: Implement a basic hash table without collision resolution.
+    # Step 4: Implement get() function
     def get(self, key):
         """
         Retrieve the value stored with the given key.
