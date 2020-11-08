@@ -1,7 +1,9 @@
+# Day 1 Part 1, Implemented a HashTableEntry class
 class HashTableEntry:
     """
     Linked List hash table key/value pair
     """
+
     def __init__(self, key, value):
         self.key = key
         self.value = value
@@ -11,7 +13,7 @@ class HashTableEntry:
 # Hash table can't have fewer than this many slots
 MIN_CAPACITY = 8
 
-
+# Day 1 Part 1, Implemented a HashTable class
 class HashTable:
     """
     A hash table that with `capacity` buckets
@@ -20,9 +22,11 @@ class HashTable:
     Implement this.
     """
 
-    def __init__(self, capacity):
+    def __init__(self, capacity=MIN_CAPACITY):
         # Your code here
-
+        self.capacity = capacity
+        self.storage = [None] * capacity
+        self.size = 0
 
     def get_num_slots(self):
         """
@@ -35,7 +39,7 @@ class HashTable:
         Implement this.
         """
         # Your code here
-
+        return len(self.storage)
 
     def get_load_factor(self):
         """
@@ -44,7 +48,16 @@ class HashTable:
         Implement this.
         """
         # Your code here
+        count = 0
+        for item in self.storage:
+            if item:
+                curr_item = item
+                count += 1
+                while curr_item.next:
+                    count += 1
+                    curr_item = curr_item.next
 
+        return count / len(self.storage)
 
     def fnv1(self, key):
         """
@@ -55,7 +68,7 @@ class HashTable:
 
         # Your code here
 
-
+    # Day 1 Part 2, Implemented hash function
     def djb2(self, key):
         """
         DJB2 hash, 32-bit
@@ -63,16 +76,21 @@ class HashTable:
         Implement this, and/or FNV-1.
         """
         # Your code here
+        hash_1 = 5381
+        for x in key:
+            hash_1 = ((hash_1 << 5) + hash_1) + ord(x)
 
+        return hash_1 & 0xFFFFFFFF
 
+    # Day 1 Part 3, Implement hash_index() function
     def hash_index(self, key):
         """
         Take an arbitrary key and return a valid integer index
         between within the storage capacity of the hash table.
         """
-        #return self.fnv1(key) % self.capacity
         return self.djb2(key) % self.capacity
 
+    # Day 1 Part 4, Implement put() function
     def put(self, key, value):
         """
         Store the value with the given key.
@@ -82,8 +100,22 @@ class HashTable:
         Implement this.
         """
         # Your code here
+        hash_index = self.hash_index(key)
+        current = self.storage[hash_index]
 
+        if current:
+            while current:
+                if current.key == key:
+                    current.value = value
+                    return
+                if current.next:
+                    current = current.next
+                else:
+                    current.next = HashTableEntry(key, value)
+        else:
+            self.storage[hash_index] = HashTableEntry(key, value)
 
+    # Day 1 Part 4, Implement delete() function
     def delete(self, key):
         """
         Remove the value stored with the given key.
@@ -93,8 +125,23 @@ class HashTable:
         Implement this.
         """
         # Your code here
+        hash_index = self.hash_index(key)
+        current = self.storage[hash_index]
+        if current:
+            while current:
+                if current.key == key:
+                    self.storage[hash_index] = current.next
+                    if self.capacity > 16:
+                        self.resize(self.capacity / 2)
+                        return
+                elif current.next:
+                    current = current.next
+                else:
+                    return
+        else:
+            return
 
-
+    # Day 1 Part 4, Implement get() function
     def get(self, key):
         """
         Retrieve the value stored with the given key.
@@ -104,7 +151,15 @@ class HashTable:
         Implement this.
         """
         # Your code here
-
+        if self.storage[self.hash_index(key)]:
+            current = self.storage[self.hash_index(key)]
+            while current.next:
+                if current.key == key:
+                    return current.value
+                current = current.next
+            if current.key == key:
+                return current.value
+        return
 
     def resize(self, new_capacity):
         """
@@ -114,7 +169,6 @@ class HashTable:
         Implement this.
         """
         # Your code here
-
 
 
 if __name__ == "__main__":
