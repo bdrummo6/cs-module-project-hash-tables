@@ -2,7 +2,6 @@ import unittest
 
 from word_count import word_count
 
-
 class TestWordCount(unittest.TestCase):
 
     def test_word_count(self):
